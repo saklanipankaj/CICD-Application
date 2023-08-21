@@ -12,9 +12,6 @@ jobs:
 
   Publish:
     runs-on: ubuntu-latest
-    env:
-      app-directory: ./DotNetApp
-
     steps:
     - name: Publish to Amplify
       run: >-
