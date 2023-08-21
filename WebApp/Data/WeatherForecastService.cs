@@ -1,4 +1,4 @@
-namespace App.Data;
+namespace WebApp.Data;
 
 public class WeatherForecastService
 {
