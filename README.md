@@ -29,7 +29,7 @@ Follow the steps outlined for Unit Testing:
 ## Playwright Codegen
 Helps to create Playwright script using a UI
 - Navigate to project root directory
-- Navigate to App folder `cd MyBlazorApp`
+- Navigate to App folder `cd DotNetApp`
 - Start the BlazorApp `dotnet watch`/ `dotnet run`
     - `dotnet watch` is a interactive version exclusive to Blazor, allows for changes to the files to be immediately reflected on the running application
 - Start another powershell terminal to continue
