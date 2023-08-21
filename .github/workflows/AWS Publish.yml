@@ -1,0 +1,36 @@
+name: Publish Application
+
+on:
+  push:
+    branches:
+      -main
+
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+
+  Publish:
+    runs-on: ubuntu-latest
+    env:
+      app-directory: ./DotNetApp
+
+    steps:
+    - name: Publish to Amplify
+      run: >-
+        curl -X POST 
+        -d {} "https://webhooks.amplify.ap-southeast-1.amazonaws.com/prod/webhooks?id=0684e629-e16f-4ddf-85e5-307e7eb33c40&token=AVn0b5oyPvOoLWjZtV1ExRbCBoD0GleBQ8kKdxSOMU&operation=startbuild"
+        -H "Content-Type:application/json"
+
+      
+    - uses: actions/checkout@master
+    - name: curl
+      uses: enflo/curl-action@master
+      with:
+        curl: {{ -X POST -d {} "https://webhooks.amplify.ap-southeast-1.amazonaws.com/prod/webhooks?id=0684e629-e16f-4ddf-85e5-307e7eb33c40&token=AVn0b5oyPvOoLWjZtV1ExRbCBoD0GleBQ8kKdxSOMU&operation=startbuild" -H "Content-Type:application/json" }}
+    
+
+    
+  
