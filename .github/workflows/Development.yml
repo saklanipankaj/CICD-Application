@@ -21,14 +21,15 @@ jobs:
       sln-file: DotNetApp.sln
 
     steps:
+      - name: "☁️ checkout repository"
       - uses: actions/checkout@v3
       
       # Run NuGet restore for each project/solution to analyze
-      - name: Run NuGet restore
+      - name: "📦 Run NuGet restore"
         run: dotnet restore
       
       # Run code analysis for all projects/solutions, such that code analysis violations break the build.
-      - name: Run .NET Code Analysis
+      - name: "📊 Run .NET Code Analysis"
         uses: dotnet/code-analysis@v1
         id: code-analysis
         with:
