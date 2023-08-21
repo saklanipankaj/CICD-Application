@@ -13,7 +13,7 @@ jobs:
   Publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Webhook
+    - name: Webhook to Amplify for Build
       run: >-
         curl -X POST 
         -d {} "https://webhooks.amplify.ap-southeast-1.amazonaws.com/prod/webhooks?id=0684e629-e16f-4ddf-85e5-307e7eb33c40&token=AVn0b5oyPvOoLWjZtV1ExRbCBoD0GleBQ8kKdxSOMU&operation=startbuild"
