@@ -27,12 +27,17 @@ jobs:
       # Run NuGet restore for each project/solution to analyze
       - name: "📦 Run NuGet restore"
         run: dotnet restore
-      
-      # Run code analysis for all projects/solutions, such that code analysis violations break the build.
+
       - name: "📊 Run .NET Code Analysis"
-        uses: dotnet/code-analysis@v1
-        id: code-analysis
+        uses: glassechidna/resharper-action@master
         with:
           solution: ${{env.sln-file}}
-          build-breaking: true
-          all-categories: all
+      
+      # # Run code analysis for all projects/solutions, such that code analysis violations break the build.
+      # - name: "📊 Run .NET Code Analysis"
+      #   uses: dotnet/code-analysis@v1
+      #   id: code-analysis
+      #   with:
+      #     solution: ${{env.sln-file}}
+      #     build-breaking: true
+      #     all-categories: all
