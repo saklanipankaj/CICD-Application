@@ -65,7 +65,7 @@ jobs:
   
   test:
     name: Unit Test
-    needs: 
+    needs: analyze
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
