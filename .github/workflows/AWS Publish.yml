@@ -12,7 +12,7 @@ concurrency:
 jobs:
   Test:
     name: Code Analysis and Unit Test
-    uses: ./Development.yml@main
+    uses: saklanipankaj/CICD-Application/.github/workflows//Development.yml@main
   
   Dev-Publish:
     name: Pulblish to Dev Environment
