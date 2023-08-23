@@ -82,6 +82,7 @@ jobs:
         
     - name: 🔧 Restore dependencies
       run: dotnet restore
+      working-directory: ${{env.working-directory}}
       
     - name: 📦 Build
       run: dotnet build --no-restore
