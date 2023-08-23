@@ -11,8 +11,15 @@ concurrency:
 
 jobs:
   Test:
-    name: Code Analysis and Unit Test
-    uses: saklanipankaj/CICD-Application/.github/workflows/Development.yml@main
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    
+    runs-on: ubuntu-latest
+    steps:
+    - name: Code Analysis and Unit Test
+      uses: saklanipankaj/CICD-Application/.github/workflows/Development.yml@main
   
   Dev-Publish:
     name: Pulblish to Dev Environment
