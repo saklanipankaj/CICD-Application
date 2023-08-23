@@ -1,4 +1,4 @@
-name: Publish to AWS Amplify
+name: PR Testing & Dev Publish
 on:
   push:
     branches:
@@ -19,7 +19,7 @@ jobs:
     uses: ./.github/workflows/Development.yml
   
   Dev-Publish:
-    name: Pulblish to Dev Environment
+    name: Publish to Dev Environment
     runs-on: ubuntu-latest
     steps:
     - name: Webhook to Amplify for Build
@@ -27,4 +27,30 @@ jobs:
         curl -X POST 
         -d {} "https://webhooks.amplify.ap-southeast-1.amazonaws.com/prod/webhooks?id=0684e629-e16f-4ddf-85e5-307e7eb33c40&token=AVn0b5oyPvOoLWjZtV1ExRbCBoD0GleBQ8kKdxSOMU&operation=startbuild"
         -H "Content-Type:application/json"
-  
+
+  UAT:
+    runs-on: ubuntu-latest
+    needs: [Dev-Publish, Intial-Test]
+    env:
+      testing-directory: ./UAT
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: ${{env.testing-directory}}
+
+    - name: Install Playwright
+      run: pwsh bin/Debug/netX/playwright.ps1 install
+      working-directory: ${{env.testing-directory}}
+    
+    - name: Test
+      run: dotnet test
+      working-directory: ${{env.testing-directory}}
