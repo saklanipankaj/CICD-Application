@@ -10,8 +10,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Test:
+  Intial-Test:
     name: Code Analysis and Unit Test
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     uses: ./.github/workflows/Development.yml
   
   Dev-Publish:
