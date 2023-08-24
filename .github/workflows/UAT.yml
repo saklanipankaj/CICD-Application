@@ -5,7 +5,6 @@ name: UAT Testing
 #     types: 
 #       - completed
 on:
-    push:
     workflow_call:
   
 jobs:
