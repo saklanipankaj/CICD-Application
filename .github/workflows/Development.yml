@@ -9,6 +9,7 @@ on:
       -'!dev'
     paths:
       - '**.cs'
+      - '**.razor'
   workflow_call:
 
 jobs:
