@@ -1,14 +1,18 @@
 
 # Code vulnerabilities check
-name: Development
+name: Code Analysis & Unit Testing
 on:
   push:
     branches:
-      -'!main'
-      -'!dev'
+      - '!main'
+      - '!dev'
     paths:
       - '**.cs'
   workflow_call:
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
 
 jobs:
   analyze:

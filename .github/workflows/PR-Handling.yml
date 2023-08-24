@@ -1,6 +1,6 @@
-name: PR Testing & Dev Publish
+name: Test Publish and Testing
 on:
-  pull_request:
+  push:
     paths:
       - '**.cs'
       - '**.razor'
@@ -12,27 +12,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Intial-Test:
+  Tests:
     name: Code Analysis and Unit Test
     permissions:
       actions: read
       contents: read
       security-events: write
     uses: ./.github/workflows/Development.yml
-  
-  Dev-Publish:
-    name: Publish to Dev Environment
-    uses: ./.github/workflows/Publish.yml
-    secrets:
-      env-path: ${{secrets.DEPLOY_DEV_PATH}}
-
-  UAT:
-    needs: [Dev-Publish, Intial-Test]
-    name: 'Playwright Testing'
-    uses: ./.github/workflows/UAT.yml
 
   Close-Pull:
-    needs: UAT
+    needs: Intial-Test
     runs-on: ubuntu-latest
     steps:
       - name: Close Pull Test Failure
