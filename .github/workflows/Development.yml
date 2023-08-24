@@ -8,7 +8,7 @@ on:
       - '**.cs'
       - '**.razor'
     tags:
-      - '*''
+      - '*'
   workflow_call:
 
 jobs:
