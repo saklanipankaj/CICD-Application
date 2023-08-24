@@ -35,7 +35,7 @@ jobs:
   UAT:
     runs-on: ubuntu-latest
     env:
-      testing-directory: ./UAT
+      testing-directory: ./PWTests
 
     steps:
     - uses: actions/checkout@v3
@@ -45,17 +45,13 @@ jobs:
         dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
-
-    - name: Add Playwright Package
-      run: dotnet add package Microsoft.Playwright.NUnit
-      working-directory: ${{env.testing-directory}}
       
     - name: Build
       run: dotnet build --no-restore
       working-directory: ${{env.testing-directory}}
 
     - name: Install Playwright
-      run: pwsh bin/Debug/netX/playwright.ps1 install
+      run: pwsh bin/Debug/net7.0/playwright.ps1 install
       working-directory: ${{env.testing-directory}}
     
     - name: Test
