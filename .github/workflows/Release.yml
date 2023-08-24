@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   Initial-Test:
-    name: Code Analysis and Unit Test - Before Ending
+    name: Code Analysis and Unit Test - (Uncessary)
     permissions:
       actions: read
       contents: read
