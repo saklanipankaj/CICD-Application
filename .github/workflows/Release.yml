@@ -9,17 +9,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Initial-Test:
-    name: Code Analysis and Unit Test - (Uncessary)
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    uses: ./.github/workflows/Development.yml
+  # Initial-Test:
+  #   name: Code Analysis and Unit Test - (Uncessary)
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+  #   uses: ./.github/workflows/Development.yml
   
   Release:
     if: github.event.pull_request.merged == true
-    needs: Initial-Test
+    # needs: Initial-Test
     name: Release to Prod Environment
     uses: ./.github/workflows/Publish.yml
     secrets:
