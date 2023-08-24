@@ -3,9 +3,9 @@
 name: Development
 on:
   push:
-    paths:
-      - '**.cs'
-      - '**.razor'
+    # paths:
+    #   - '**.cs'
+    #   - '**.razor'
   workflow_call:
 
 jobs:
