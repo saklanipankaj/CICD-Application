@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - '**.cs'
+      - '**.razor'
     branches:
       - dev
 
