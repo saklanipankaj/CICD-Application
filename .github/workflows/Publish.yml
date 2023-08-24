@@ -1,0 +1,17 @@
+name: Publish to Env
+
+on:
+  workflow_call:
+    secrets:
+      env-path:
+        required: true
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Webhook to Amplify for Build
+      run: >-
+        curl -X POST 
+        -d {} ${{secrets.env-path}}
+        -H "Content-Type:application/json"
