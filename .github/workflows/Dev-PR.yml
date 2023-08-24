@@ -29,3 +29,14 @@ jobs:
     needs: [Dev-Publish, Intial-Test]
     name: 'Playwright Testing'
     uses: ./.github/workflows/UAT.yml
+
+  Close-Pull:
+    needs: UAT
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Pull Test Failure
+        if: failure()
+        run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." --delete-branch "0"
+        
+
+  
