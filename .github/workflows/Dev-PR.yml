@@ -27,5 +27,5 @@ jobs:
 
   UAT:
     needs: [Dev-Publish, Intial-Test]
-    name: 'Playwrright Testing'
+    name: 'Playwright Testing'
     uses: ./.github/workflows/UAT.yml
