@@ -40,7 +40,7 @@ Helps to create Playwright script using a UI
 ## Playwright Trace Viewer
 - Start Powershell Terminal
 - `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` used to temporarily allow for execution of scripts
-- Navigate to UAT Folder `cd UAT`
+- Navigate to PWTests Folder `cd PWTests`
 - Run the `.\bin\Debug\net7.0\playwright.ps1 show-trace PWTests\bin\Debug\net7.0\trace.zip`
 
 
