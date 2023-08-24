@@ -3,6 +3,9 @@
 name: Development
 on:
   push:
+    branches:
+      -'!main'
+      -'!dev'
     paths:
       - '**.cs'
   workflow_call:
