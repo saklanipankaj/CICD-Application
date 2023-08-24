@@ -5,6 +5,7 @@ name: UAT Testing
 #     types: 
 #       - completed
 on:
+    push:
     workflow_call:
   
 jobs:
@@ -44,6 +45,10 @@ jobs:
         dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
+
+    - name: Add Playwright Package
+      run: dotnet add package Microsoft.Playwright.NUnit
+      working-directory: ${{env.testing-directory}}
       
     - name: Build
       run: dotnet build --no-restore
