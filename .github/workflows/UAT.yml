@@ -24,12 +24,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Install Playwright
-      run: pwsh bin/Debug/net7.0/playwright.ps1 install
+    - name: Add Package
+      run: dotnet add package Microsoft.Playwright.NUnit
       working-directory: ${{env.testing-directory}}
-      
+
     - name: Build
       run: dotnet build --no-restore
+      working-directory: ${{env.testing-directory}}
+
+    - name: Install Playwright
+      run: pwsh ./bin/Debug/net7.0/playwright.ps1 install
       working-directory: ${{env.testing-directory}}
     
     - name: Test
