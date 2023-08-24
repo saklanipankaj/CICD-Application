@@ -3,11 +3,12 @@
 name: Development
 on:
   push:
-    branches:
-      -'!main'
-      -'!dev'
+    branches-ignore: ['main','dev']
     paths:
       - '**.cs'
+      - '**.razor'
+    tags:
+      - '*'
   workflow_call:
 
 jobs:
