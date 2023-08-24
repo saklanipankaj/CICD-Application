@@ -1,0 +1,40 @@
+name: UAT Testing
+# on:
+#   workflow_run:
+#     workflows: ["Publish"]
+#     types: 
+#       - completed
+on:
+    workflow_call:
+  
+jobs:
+
+  UAT:
+    runs-on: ubuntu-latest
+    env:
+      testing-directory: ./PWTests
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Add Package
+      run: dotnet add package Microsoft.Playwright.NUnit
+      working-directory: ${{env.testing-directory}}
+
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: ${{env.testing-directory}}
+
+    - name: Install Playwright
+      run: pwsh ./bin/Debug/net7.0/playwright.ps1 install
+      working-directory: ${{env.testing-directory}}
+    
+    - name: Test
+      run: dotnet test
+      working-directory: ${{env.testing-directory}}

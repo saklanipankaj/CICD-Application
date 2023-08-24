@@ -3,9 +3,8 @@
 name: Development
 on:
   push:
-    branches:
-      - main
-  pull_request:
+    paths:
+      - '**.cs'
   workflow_call:
 
 jobs:
