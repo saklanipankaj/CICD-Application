@@ -24,28 +24,6 @@ jobs:
       env-path: ${{secrets.DEPLOY_DEV_PATH}}
 
   UAT:
-    runs-on: ubuntu-latest
     needs: [Dev-Publish, Intial-Test]
-    env:
-      testing-directory: ./UAT
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore
-      working-directory: ${{env.testing-directory}}
-
-    - name: Install Playwright
-      run: pwsh bin/Debug/netX/playwright.ps1 install
-      working-directory: ${{env.testing-directory}}
-    
-    - name: Test
-      run: dotnet test
-      working-directory: ${{env.testing-directory}}
+    name: 'Playwrright Testing'
+    uses: ./.github/workflows/UAT.yml
