@@ -26,9 +26,7 @@ jobs:
   
   test:
     name: Unit Test
-    needs: analyze
     runs-on: ubuntu-latest
-    if: always()
     strategy:
       fail-fast: false
     env:
