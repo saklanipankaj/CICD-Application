@@ -1,4 +1,4 @@
-name: Test Publish and Testing
+name: Handling Pull Requests
 on:
   pull_request:
     branches-ignore:
