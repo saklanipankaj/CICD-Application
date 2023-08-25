@@ -21,12 +21,13 @@ jobs:
     uses: ./.github/workflows/Development.yml
   
   Publish:
-    name: Publish to Dev Environment
+    name: Publish to Test Env
     uses: ./.github/workflows/Publish.yml
     secrets:
       env-path: ${{secrets.DEPLOY_TEST_PATH}}
 
   UAT:
+    if: always()
     needs: [Publish, Intial-Test]
     name: 'Playwright Testing'
     uses: ./.github/workflows/UAT.yml
