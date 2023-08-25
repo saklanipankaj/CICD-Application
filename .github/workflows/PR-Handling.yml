@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Close Pull Test Failure
         run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR."
+        env:
+          GH_TOKEN: ${{ github.token }}
         
 
   
