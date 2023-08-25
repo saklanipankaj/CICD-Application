@@ -21,11 +21,11 @@ jobs:
     uses: ./.github/workflows/Development.yml
 
   Close-Pull:
+    if: failure()
     needs: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Close Pull Test Failure
-        if: failure()
         run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." --delete-branch "0"
         
 
