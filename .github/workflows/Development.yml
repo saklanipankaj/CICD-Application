@@ -1,6 +1,6 @@
 
 # Code vulnerabilities check
-name: Code Analysis & Unit Testing
+name: Development
 on:
   push:
     branches-ignore: ['main','dev']
