@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Close Pull Test Failure
-        run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR."
+        run: gh pr close ${{github.event.pull_request.id}} --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR."
         env:
           GH_TOKEN: ${{ github.token }}
         
