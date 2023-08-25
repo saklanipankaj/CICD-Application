@@ -38,7 +38,7 @@ Helps to create Playwright script using a UI
 - Run the ` .\bin\Debug\net7.0\playwright.ps1 codegen {{url-of-locally-running-webpage}}`
 
 ## Playwright Trace Viewer
-- Start Powershell Terminal
+- Start Powershell Terminal Required
 - `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` used to temporarily allow for execution of scripts
 - Navigate to PWTests Folder `cd PWTests`
 - Run the `.\bin\Debug\net7.0\playwright.ps1 show-trace PWTests\bin\Debug\net7.0\trace.zip`

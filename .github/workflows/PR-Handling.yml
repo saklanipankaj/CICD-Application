@@ -1,0 +1,32 @@
+name: Test Publish and Testing
+on:
+  pull_request:
+    branches-ignore:
+      - 'main'
+    paths:
+      - '**.cs'
+      - '**.razor'
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  Tests:
+    name: Code Analysis and Unit Test
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/Development.yml
+
+  Close-Pull:
+    needs: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Pull Test Failure
+        if: failure()
+        run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." --delete-branch "0"
+        
+
+  

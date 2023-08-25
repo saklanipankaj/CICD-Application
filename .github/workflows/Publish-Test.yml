@@ -1,10 +1,11 @@
-name: PR Testing & Dev Publish
+name: Test Publish and Testing
 on:
-  pull_request:
+  push:
     paths:
       - '**.cs'
+      - '**.razor'
     branches:
-      - dev
+      - Test
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
@@ -19,24 +20,14 @@ jobs:
       security-events: write
     uses: ./.github/workflows/Development.yml
   
-  Dev-Publish:
-    name: Publish to Dev Environment
+  Publish:
+    name: Publish to Test Env
     uses: ./.github/workflows/Publish.yml
     secrets:
-      env-path: ${{secrets.DEPLOY_DEV_PATH}}
+      env-path: ${{secrets.DEPLOY_TEST_PATH}}
 
   UAT:
-    needs: [Dev-Publish, Intial-Test]
+    if: always()
+    needs: [Publish, Intial-Test]
     name: 'Playwright Testing'
     uses: ./.github/workflows/UAT.yml
-
-  Close-Pull:
-    needs: UAT
-    runs-on: ubuntu-latest
-    steps:
-      - name: Close Pull Test Failure
-        if: failure()
-        run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." --delete-branch "0"
-        
-
-  
