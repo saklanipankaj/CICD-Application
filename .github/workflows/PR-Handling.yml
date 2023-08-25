@@ -24,6 +24,7 @@ jobs:
     if: failure()
     needs: Tests
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Close Pull Test Failure
         run: gh pr close -R ${{github.repository}} --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." ${{github.event.pull_request.number}} 
