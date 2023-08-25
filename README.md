@@ -1,5 +1,9 @@
-# CICD-Application ![ ](https://github.com/saklanipankaj/MyBlazorApp/actions/workflows/UnitTesting.yml/badge.svg)
+# CICD-Application
 Created by adapting the base Microsoft Blazor App. Includes a working weather widget that draws information from a live API service. (Location is set to Singapore)
+
+# Branch Workflow Status
+Dev: 
+
 
 ## Requirements (Update As Necessary Later):
 .Net 7

@@ -1,4 +1,4 @@
-name: Test Publish and Testing
+name: Handling Pull Requests
 on:
   pull_request:
     branches-ignore:
@@ -21,12 +21,13 @@ jobs:
     uses: ./.github/workflows/Development.yml
 
   Close-Pull:
+    if: failure()
     needs: Tests
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Close Pull Test Failure
-        if: failure()
-        run: gh pr close --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." --delete-branch "0"
-        
-
+        run: gh pr close -R ${{github.repository}} --comment "Auto-closing the pull request! Tests have failed! Check and ammend before submitting new PR." ${{github.event.pull_request.number}} 
+        env:
+          GH_TOKEN: ${{ github.token }}
   
