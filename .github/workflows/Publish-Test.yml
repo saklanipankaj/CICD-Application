@@ -1,4 +1,4 @@
-name: Test Publish and Testing
+name: Publish - Test
 on:
   push:
     paths:
@@ -8,7 +8,7 @@ on:
       - Test
 
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group: '${{ github.workflow }} @ ${{ github.event_name || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:

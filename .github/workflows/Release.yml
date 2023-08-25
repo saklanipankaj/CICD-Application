@@ -8,7 +8,7 @@ on:
       - '**.razor'
 
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group: '${{ github.workflow }} @ ${{ github.event_name || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,6 @@ jobs:
   #   uses: ./.github/workflows/Development.yml
   
   Release:
-    if: github.event.pull_request.merged == true
     # needs: Initial-Test
     name: Release to Prod Environment
     uses: ./.github/workflows/Publish.yml

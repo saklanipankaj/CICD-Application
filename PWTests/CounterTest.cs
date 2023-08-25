@@ -21,7 +21,7 @@ public class CounterTest : PageTest
         });        
         
         // Null check for environment otherwise to got localhost
-        await Page.GotoAsync("https://dev.d2rqvn71lrkvxm.amplifyapp.com");
+        await Page.GotoAsync("https://test.d2rqvn71lrkvxm.amplifyapp.com");
         
         await Page.GetByRole(AriaRole.Link, new() { Name = "Counter" }).ClickAsync();
 
