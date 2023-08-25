@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   analyze:
+    if: ${{ github.event_name == 'pull_request'}}
     name: Security and Code Analysis
     runs-on: 'ubuntu-latest'
     timeout-minutes: 360
