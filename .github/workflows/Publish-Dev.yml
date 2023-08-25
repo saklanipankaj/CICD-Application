@@ -1,4 +1,4 @@
-name: Dev Publish
+name: Publish - Dev
 on:
   push:
     branches:

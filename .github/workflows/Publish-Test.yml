@@ -1,4 +1,4 @@
-name: Test Publish and Testing
+name: Publish - Test
 on:
   push:
     paths:
