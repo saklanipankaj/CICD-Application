@@ -1,4 +1,4 @@
-# CICD-Application
+# CICD-Application [![Release](https://github.com/saklanipankaj/CICD-Application/actions/workflows/Release.yml/badge.svg?branch=main)](https://github.com/saklanipankaj/CICD-Application/actions/workflows/Release.yml) [![UAT Testing](https://github.com/saklanipankaj/CICD-Application/actions/workflows/UAT.yml/badge.svg?branch=main)](https://github.com/saklanipankaj/CICD-Application/actions/workflows/UAT.yml)
 Created by adapting the base Microsoft Blazor App. Includes a working weather widget that draws information from a live API service. (Location is set to Singapore)
 
 # Branch Workflow Status
