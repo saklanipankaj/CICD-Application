@@ -23,12 +23,17 @@ Follow the steps outlined for Unit Testing:
 ### Setup
 - Start Powershell
 - `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` used to temporarily allow for execution of script
+- Navigate to Playwright Test Project `cd PWTests`
+- Add the Playwright package to the project `dotnet add package Microsoft.Playwright.NUnit`
+- Build the Project `dotnet build`
 - `.\bin\Debug\net7.0\playwright.ps1 install` install dependencies
 
 ### Testing
-- `cd UAT`
+- Navigate to Playwright Test Project `cd PWTests`
 - `dotnet build`
-- `dotnet test` / `dotnet test -- Playwright.LaunchOptions.Headless=false`
+- `dotnet test` / `dotnet test -- Playwright.LaunchOptions.Headless=false` (Lauches the entire test with UI)
+#### Debug Modein Powershell 
+- 
 
 ## Playwright Codegen
 Helps to create Playwright script using a UI
