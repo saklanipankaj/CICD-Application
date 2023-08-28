@@ -2,7 +2,7 @@
 Created by adapting the base Microsoft Blazor App. Includes a working weather widget that draws information from a live API service. (Location is set to Singapore)
 
 ## Requirements (Update As Necessary Later):
-.Net 7
+.Net 7.0
 
 ## UAT Testing using Playwright
 The UAT Testing has been done using Microsoft.Playwright library using NUnit.
