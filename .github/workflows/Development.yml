@@ -10,12 +10,12 @@ on:
   workflow_call:
 
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group: '${{ github.workflow }}' #@ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:
   analyze:
-    if: ${{ github.event_name == 'pull_request'}}
+    # if: ${{ github.event_name == 'pull_request'}}
     name: Security and Code Analysis
     permissions:
       actions: read
