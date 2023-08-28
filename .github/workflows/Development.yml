@@ -3,7 +3,7 @@
 name: Development
 on:
   push:
-    branches-ignore: ['main','dev']
+    branches-ignore: ['main','dev', 'test']
     paths:
       - '**.cs'
       - '**.razor'
@@ -15,7 +15,8 @@ concurrency:
 
 jobs:
   analyze:
-    # if: ${{ github.event_name == 'pull_request'}}
+    # Do not do again cause should have been done in PR
+    if: ${{ contains('Merge pull request', github.event.head_commit.message) != true}}
     name: Security and Code Analysis
     permissions:
       actions: read

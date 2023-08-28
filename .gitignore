@@ -477,3 +477,6 @@ $RECYCLE.BIN/
 *.lnk
 
 .vscode
+/test-results/
+/playwright-report/
+/playwright/.cache/
