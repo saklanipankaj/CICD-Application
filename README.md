@@ -1,4 +1,4 @@
-# CICD-Application
+# CICD-Application [![Release](https://github.com/saklanipankaj/CICD-Application/actions/workflows/Release.yml/badge.svg?branch=main)](https://github.com/saklanipankaj/CICD-Application/actions/workflows/Release.yml) [![UAT Testing](https://github.com/saklanipankaj/CICD-Application/actions/workflows/UAT.yml/badge.svg?branch=main)](https://github.com/saklanipankaj/CICD-Application/actions/workflows/UAT.yml)
 Created by adapting the base Microsoft Blazor App. Includes a working weather widget that draws information from a live API service. (Location is set to Singapore)
 
 # Branch Workflow Status
@@ -19,16 +19,32 @@ Follow the steps outlined for Unit Testing:
 - `dotnet build`
 - `dotnet test`
 
+## Changing Browser
+- `dotnet test --settings:chromium.runsettings` Chrome
+- `dotnet test --settings:firefox.runsettings` Firefox
+- `dotnet test --settings:webkit.runsettings` Safari
+
 ## UAT Testing (Playwright):
 ### Setup
 - Start Powershell
 - `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` used to temporarily allow for execution of script
+- Navigate to Playwright Test Project `cd PWTests`
+- Add the Playwright package to the project `dotnet add package Microsoft.Playwright.NUnit`
+- Build the Project `dotnet build`
 - `.\bin\Debug\net7.0\playwright.ps1 install` install dependencies
 
 ### Testing
-- `cd UAT`
+- Navigate to Playwright Test Project `cd PWTests`
 - `dotnet build`
-- `dotnet test` / `dotnet test -- Playwright.LaunchOptions.Headless=false`
+- `dotnet test` / `dotnet test -- Playwright.LaunchOptions.Headless=false` (Lauches the entire test with UI)
+#### Debug Modein Powershell 
+- Run the command `$env:PWDEBUG=1` to activate debug mode
+- Run the command `dotnet test`
+
+#### Run Different Browsers
+- `dotnet test --settings:chromium.runsettings` Chrome Browser
+- `dotnet test --settings:firefox.runsettings` Firefox Browser
+- `dotnet test --settings:webkit.runsettings` Safari Browser
 
 ## Playwright Codegen
 Helps to create Playwright script using a UI
