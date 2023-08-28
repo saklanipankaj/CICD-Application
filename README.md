@@ -41,6 +41,11 @@ Follow the steps outlined for Unit Testing:
 - Run the command `$env:PWDEBUG=1` to activate debug mode
 - Run the command `dotnet test`
 
+#### Run Different Browsers
+- `dotnet test --settings:chromium.runsettings` Chrome Browser
+- `dotnet test --settings:firefox.runsettings` Firefox Browser
+- `dotnet test --settings:webkit.runsettings` Safari Browser
+
 ## Playwright Codegen
 Helps to create Playwright script using a UI
 - Navigate to project root directory
