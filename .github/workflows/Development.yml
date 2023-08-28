@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   analyze:
-    if: ${{ github.event_name == 'pull_request'}}
+    #if: ${{ github.event_name == 'pull_request'}}
     name: Security and Code Analysis
     permissions:
       actions: read
