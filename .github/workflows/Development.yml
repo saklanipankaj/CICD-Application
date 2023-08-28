@@ -3,7 +3,7 @@
 name: Development
 on:
   push:
-    branches-ignore: ['main','dev']
+    branches-ignore: ['main','dev', 'test']
     paths:
       - '**.cs'
       - '**.razor'
