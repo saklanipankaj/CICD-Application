@@ -19,6 +19,11 @@ Follow the steps outlined for Unit Testing:
 - `dotnet build`
 - `dotnet test`
 
+## Changing Browser
+- `dotnet test --settings:chromium.runsettings` Chrome
+- `dotnet test --settings:firefox.runsettings` Firefox
+- `dotnet test --settings:webkit.runsettings` Safari
+
 ## UAT Testing (Playwright):
 ### Setup
 - Start Powershell
@@ -33,7 +38,8 @@ Follow the steps outlined for Unit Testing:
 - `dotnet build`
 - `dotnet test` / `dotnet test -- Playwright.LaunchOptions.Headless=false` (Lauches the entire test with UI)
 #### Debug Modein Powershell 
-- 
+- Run the command `$env:PWDEBUG=1` to activate debug mode
+- Run the command `dotnet test`
 
 ## Playwright Codegen
 Helps to create Playwright script using a UI
