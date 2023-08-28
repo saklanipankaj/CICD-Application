@@ -16,7 +16,7 @@ concurrency:
 jobs:
   analyze:
     # Do not do again cause should have been done in PR
-    if: ${{ contains('Merge pull request', github.event.head_commit.message) != true}}
+    if: ${{ contains('Merge pull request', github.event.head_commit.message) != true || contains('PR-Handling',github.workflow)}}
     name: Security and Code Analysis
     permissions:
       actions: read
