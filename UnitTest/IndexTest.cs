@@ -11,7 +11,7 @@ namespace UnitTest
         {
             using var ctx = new TestContext();
             var cut = ctx.RenderComponent<DotNetApp.Pages.Index>();
-            cut.Find("h1").MarkupMatches("<h1>Landing Page-Nature Lover</h1>");
+            cut.Find("h1").MarkupMatches("<h1>Nature Lover</h1>");
         }
     }
 }
