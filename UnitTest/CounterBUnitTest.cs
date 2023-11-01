@@ -23,5 +23,6 @@ namespace UnitTest
             cut.Find("button").Click();
             cut.Find("p").MarkupMatches("<p role=\"Status\">Current count: 2</p>");
         }
+        
     }
 }
