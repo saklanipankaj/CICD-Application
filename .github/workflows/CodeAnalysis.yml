@@ -54,9 +54,13 @@ jobs:
   Scantist:
     name: Scantist Tests
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./
+
     steps:
       - name: 📦 Build
         run: dotnet build --no-restore
+        working-directory: ${{env.working-directory}}
 
       - name: Download SCA-Bom-Detect
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
