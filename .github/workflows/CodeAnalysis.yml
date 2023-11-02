@@ -4,10 +4,12 @@ on:
   schedule:
     - cron: '20 3 * * *' # Excutes Everyday at 3.20am
   workflow_call:
+    secrets:
+      SCANTISTTOKEN:
+        required: true
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
   DOTNET_NOLOGO: true
   NuGetDirectory: ${{github.workspace}}/nuget
 
