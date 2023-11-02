@@ -29,7 +29,6 @@ jobs:
 
   Analysis:
     name: CodeQL & Scantist
-    needs: UnitTest
     permissions:
       actions: read
       contents: read
