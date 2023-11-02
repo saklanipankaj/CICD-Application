@@ -55,12 +55,23 @@ jobs:
     name: Scantist Tests
     runs-on: ubuntu-latest
     env:
-      working-directory: ./
+      wd_prog: ./DotNetApp
+      wd_UAT: ./UAT
+      wd_e2e: ./PWTests
+      
 
     steps:
-      - name: 📦 Build
+      - name: 📦 Build Program
         run: dotnet build --no-restore
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.wd_prog}}
+      
+      - name: 📦 Build UAT
+        run: dotnet build --no-restore
+        working-directory: ${{env.wd_UAT}}
+      
+      - name: 📦 Build E2E
+        run: dotnet build --no-restore
+        working-directory: ${{env.wd_e2e}}
 
       - name: Download SCA-Bom-Detect
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
