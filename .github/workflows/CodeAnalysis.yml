@@ -75,7 +75,7 @@ jobs:
       - run: 'echo "$Token" > key'
         shell: bash
         env:
-          Token: ${{secrets.SCANTISTTOKEN}}
+          Token: ${{secrets.DEPLOY_TEST_PATH}}
       
       - name: Upload to CICD Demo
         env:
