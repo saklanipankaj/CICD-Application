@@ -74,6 +74,6 @@ jobs:
 
       - name: Upload to CICD Demo
         env: # Setting the Token
-          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN }}
+          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
           #SCANTIST_IMPORT_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
         run: java -jar sca-bom-detect-v4.jar
