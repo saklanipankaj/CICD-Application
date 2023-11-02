@@ -16,16 +16,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  analyze:
-    # Do not do again cause should have been done in PR
-    if: ${{contains('PR-Handling',github.workflow)}}
-    name: Security and Code Analysis
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    uses: ./.github/workflows/CodeAnalysis.yml
-  
   test:
     name: Unit Test
     runs-on: ubuntu-latest

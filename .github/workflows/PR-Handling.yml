@@ -1,8 +1,6 @@
 name: Handling Pull Requests
 on:
   pull_request:
-    branches-ignore:
-      - 'main'
     paths:
       - '**.cs'
       - '**.razor'
@@ -10,19 +8,38 @@ on:
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
-
 jobs:
-  Tests:
-    name: Code Analysis and Unit Test
+  Close_PR_Mainbranch:
+    if: github.head_ref != 'dev' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Close Pull Test Failure
+        run: gh pr close -R ${{github.repository}} --comment "Auto-closing the pull request! Pull Request to Main Branch is not Allowed!" ${{github.event.pull_request.number}} 
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  UnitTest:
+    name: Unit Test
     permissions:
       actions: read
       contents: read
       security-events: write
     uses: ./.github/workflows/Development.yml
 
+  Analysis:
+    name: CodeQL & Scantist
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/CodeAnalysis.yml
+    secrets:
+      SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
+
   Close-Pull:
     if: failure()
-    needs: Tests
+    needs: [UnitTest, Analysis]
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
