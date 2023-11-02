@@ -5,13 +5,11 @@ on:
     - cron: '20 3 * * *' # Excutes Everyday at 3.20am
   workflow_call:
 
-
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
   DOTNET_NOLOGO: true
   NuGetDirectory: ${{github.workspace}}/nuget
-  SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
-  
 
 jobs:
   analyze:
@@ -75,6 +73,7 @@ jobs:
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
 
       - name: Upload to CICD Demo
-        
+        env:
+          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
           #SCANTIST_IMPORT_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
         run: java -jar sca-bom-detect-v4.jar
