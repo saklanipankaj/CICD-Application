@@ -77,7 +77,7 @@ jobs:
       - name: Testing
         env:
           SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
-        run: 'echo "$SCANTISTTOKEN" > key'
+        run: 'echo $SCANTISTTOKEN > key'
       
       - name: Upload to CICD Demo
         env:
