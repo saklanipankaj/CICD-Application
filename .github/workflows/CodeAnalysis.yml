@@ -72,6 +72,9 @@ jobs:
       - name: Download SCA-Bom-Detect
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
 
+      - name: test secret
+        run: echo "This is token ".${{secrets.SCANTISTTOKEN}}
+      
       - name: Upload to CICD Demo
         env:
           SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
