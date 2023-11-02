@@ -61,9 +61,12 @@ jobs:
       
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Test
         run: ls
-        
+
       - name: 📦 Build Program
         run: dotnet build --no-restore
         working-directory: ${{env.wd_prog}}
