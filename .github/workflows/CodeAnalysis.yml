@@ -72,13 +72,14 @@ jobs:
       - name: Download SCA-Bom-Detect
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
 
-      - run: 'echo "$Token" > key'
-        shell: bash
+      - name: Testing
         env:
-          Token: ${{secrets.DEPLOY_TEST_PATH}}
+          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
+        run: 'echo "$SCANTISTTOKEN" > key'
       
       - name: Upload to CICD Demo
         env:
           SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
-          #SCANTIST_IMPORT_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
+        #SCANTIRTST_IMPO_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
         run: java -jar sca-bom-detect-v4.jar
+        
