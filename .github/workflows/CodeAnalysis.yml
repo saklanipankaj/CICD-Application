@@ -9,7 +9,7 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
-  NuGetDirectory: ${{ github.workspace}}/nuget
+  NuGetDirectory: ${{github.workspace}}/nuget
 
 jobs:
   analyze:
@@ -54,30 +54,20 @@ jobs:
   Scantist:
     name: Scantist Tests
     runs-on: ubuntu-latest
-    env:
-      wd_prog: ./DotNetApp
-      wd_UAT: ./UAT
-      wd_e2e: ./PWTests
-      
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Test
-        run: ls
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+          
+      - name: 🔧 Restore dependencies
+        run: dotnet restore
 
       - name: 📦 Build Program
-        run: dotnet build --no-restore
-        working-directory: ${{env.wd_prog}}
-      
-      - name: 📦 Build UAT
-        run: dotnet build --no-restore
-        working-directory: ${{env.wd_UAT}}
-      
-      - name: 📦 Build E2E
-        run: dotnet build --no-restore
-        working-directory: ${{env.wd_e2e}}
+        run: dotnet build
 
       - name: Download SCA-Bom-Detect
         run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
