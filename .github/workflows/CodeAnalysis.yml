@@ -10,6 +10,7 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
   NuGetDirectory: ${{github.workspace}}/nuget
+  SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
 
 jobs:
   analyze:
@@ -75,5 +76,3 @@ jobs:
       - name: Upload to CICD Demo
           #SCANTIST_IMPORT_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
         run: java -jar sca-bom-detect-v4.jar
-        env:
-          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
