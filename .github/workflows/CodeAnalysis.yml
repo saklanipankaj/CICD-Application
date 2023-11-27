@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '20 3 * * *' # Excutes Everyday at 3.20am
   workflow_call:
+    secrets:
+      SCANTISTTOKEN:
+        required: true
 
 
 env:

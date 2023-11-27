@@ -27,6 +27,8 @@ jobs:
       contents: read
       security-events: write
     uses: ./.github/workflows/CodeAnalysis.yml
+    secrets:
+      SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN}}
 
   Close-Pull:
     if: failure()
