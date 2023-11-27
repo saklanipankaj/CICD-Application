@@ -1,9 +1,18 @@
-name: "CodeQL"
+name: "CodeQL & Scantist"
 
 on:
   schedule:
     - cron: '20 3 * * *' # Excutes Everyday at 3.20am
   workflow_call:
+    secrets:
+      SCANTISTTOKEN:
+        required: true
+
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/nuget
 
 jobs:
   analyze:
@@ -44,3 +53,16 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+
+  Scantist:
+    name: Scantist Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download SCA-Bom-Detect
+        run: curl -s https://download.scantist.io/sca-bom-detect-v4.jar --output sca-bom-detect-v4.jar
+
+      - name: Upload to CICD Demo
+        env: # Setting the Token
+          SCANTISTTOKEN: ${{secrets.SCANTISTTOKEN }}
+          #SCANTIST_IMPORT_URL : "https://192.xxx.xxx.xx:8237/ci-scan/" #add this line if you are setting up on a dedicated scantist server
+        run: java -jar sca-bom-detect-v4.jar
